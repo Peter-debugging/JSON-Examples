@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id='demo'>
+
+    </div>
+    <script>
+        var myObj = {firstName:"Pedro", lastName:"de Araújo", age:"18"};
+        var myObject = {};
+        getFromServer(myObj, showJson);
+
+        function getFromServer(obj, funcGetJson){
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange  = function() {
+                if(this.readyState == 4 && this.status == 200){
+                    funcGetJson(this);
+                }
+            }
+            xhttp.open('POST',`./server.php`, true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send(`a=${JSON.stringify(obj)}`); 
+        }
+
+        function showJson(xhttp){
+            myObject = JSON.parse(xhttp.responseText);
+            for(var i in myObject){
+                document.getElementById('demo').innerHTML += `${i}: ${myObject[i]} </br>`;
+            }
+        }
+    </script>
+</body>
+</html>

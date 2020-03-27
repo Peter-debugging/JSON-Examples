@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id='demo'>
+
+    </div>
+    <script>
+        var myJson = {
+            "name":"John", 
+            "age": 30, 
+            "cars": {
+                "car1":"Mercedes",
+                "car2":"Ferrari"
+            }
+        };
+
+        for(var i in myJson){
+            document.getElementById('demo').innerHTML += `${i}: ${myJson[i]}` + "</br>";
+        }
+        document.getElementById('demo').innerHTML += myJson.cars.car1 + "</br>";
+        delete myJson.cars.car1;
+        document.getElementById('demo').innerHTML +=myJson.cars.car1;
+    </script>
+</body>
+</html>

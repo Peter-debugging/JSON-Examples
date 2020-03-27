@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Create Object from JSOM String</h2>
+    <p id="demo">
+
+    </p>
+
+    <script>
+        var data;
+        getData();
+        function getData(){
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function(){
+                if(this.readyState == 4  && this.status == 200){
+                    data = JSON.parse(this.responseText);
+                    showObject(data);
+                }
+            };
+            xhttp.open("GET", "categories.php", true);
+            xhttp.send();
+        }        
+        function showObject(object){
+            for(var i = 0; i < object.length; i++){
+                document.write(`${object[i].descricao} - ${object[i].lucro_gasto == 0?'Lucro':'Gasto'} <br/>`);
+            }
+           
+        }
+    </script>
+</body>
+</html>
